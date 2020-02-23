@@ -17,6 +17,7 @@ const SigninButtons = ({
   lastSignedIn,
   slackSigninEnabled,
   googleSigninEnabled,
+  discordSigninEnabled,
 }: Props) => {
   return (
     <Wrapper>
@@ -40,6 +41,18 @@ const SigninButtons = ({
           <LastLogin>
             {lastSignedIn === 'google' &&
               'You signed in with Google previously'}
+          </LastLogin>
+        </Column>
+      )}
+      {discordSigninEnabled && (
+        <Column column>
+          <Button href={signin('discord')}>
+            <GoogleLogo />
+            <Spacer>Sign In with Discord</Spacer>
+          </Button>
+          <LastLogin>
+            {lastSignedIn === 'discord' &&
+              'You signed in with Discord previously'}
           </LastLogin>
         </Column>
       )}
