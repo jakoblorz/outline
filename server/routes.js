@@ -109,6 +109,7 @@ router.get('/', async ctx => {
       lastSignedIn={lastSignedIn}
       googleSigninEnabled={!!process.env.GOOGLE_CLIENT_ID}
       slackSigninEnabled={!!process.env.SLACK_KEY}
+      mattermostSigninEnabled={!!process.env.MATTERMOST_CLIENT_ID}
     />
   );
 });

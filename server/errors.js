@@ -45,3 +45,28 @@ export function ParamRequiredError(
 export function ValidationError(message: string = 'Validation failed') {
   return httpErrors(400, message, { id: 'validation_error' });
 }
+
+export function customError(name: string, message: string) {
+  class ExtendableError {
+    name: string;
+    message: string;
+    stack: string;
+    constructor(message: string) {
+      this.name = 'ExtendableError';
+      this.message = message;
+      this.stack = new Error().stack;
+    }
+  }
+
+  // Dont use extends, manually patch the prototype to
+  // enable x instanceof xxError checks
+  // $FlowIssue
+  ExtendableError.prototype = Object.create(Error.prototype);
+
+  return class extends ExtendableError {
+    constructor() {
+      super(message);
+      this.name = name;
+    }
+  };
+}

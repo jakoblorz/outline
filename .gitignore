@@ -7,3 +7,5 @@ npm-debug.log
 stats.json
 .DS_Store
 fakes3/*
+.idea/*
+!.idea/runConfigurations

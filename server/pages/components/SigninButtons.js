@@ -7,6 +7,7 @@ import Flex from '../../../shared/components/Flex';
 import Notice from '../../../shared/components/Notice';
 import GoogleLogo from '../../../shared/components/GoogleLogo';
 import SlackLogo from '../../../shared/components/SlackLogo';
+import MattermostLogo from '../../../shared/components/MattermostLogo';
 import breakpoint from 'styled-components-breakpoint';
 
 type Props = {
@@ -21,6 +22,7 @@ const SigninButtons = ({
   slackSigninEnabled,
   googleSigninEnabled,
   guestSigninEnabled,
+  mattermostSigninEnabled,
 }: Props) => {
   return (
     <Wrapper>
@@ -39,6 +41,17 @@ const SigninButtons = ({
           </Button>
           <LastLogin>
             {lastSignedIn === 'slack' && 'You signed in with Slack previously'}
+          </LastLogin>
+        </Column>
+      )}
+      {mattermostSigninEnabled && (
+        <Column column>
+          <Button href={signin('mattermost')}>
+            <MattermostLogo />
+            <Spacer>Sign In with Mattermost</Spacer>
+          </Button>
+          <LastLogin>
+            {lastSignedIn === 'mattermost' && 'You signed in with Mattermost previously'}
           </LastLogin>
         </Column>
       )}
