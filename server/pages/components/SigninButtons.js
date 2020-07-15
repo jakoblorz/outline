@@ -7,12 +7,14 @@ import Flex from '../../../shared/components/Flex';
 import Notice from '../../../shared/components/Notice';
 import GoogleLogo from '../../../shared/components/GoogleLogo';
 import SlackLogo from '../../../shared/components/SlackLogo';
+import GitlabLogo from '../../../shared/components/GitlabLogo';
 import breakpoint from 'styled-components-breakpoint';
 
 type Props = {
   lastSignedIn?: string,
   googleSigninEnabled: boolean,
   slackSigninEnabled: boolean,
+  gitlabSigninEnabled: boolean,
   guestSigninEnabled?: boolean,
 };
 
@@ -20,14 +22,17 @@ const SigninButtons = ({
   lastSignedIn,
   slackSigninEnabled,
   googleSigninEnabled,
+  gitlabSigninEnabled,
   guestSigninEnabled,
 }: Props) => {
   return (
     <Wrapper>
       {!slackSigninEnabled &&
-        !googleSigninEnabled && (
+        !googleSigninEnabled && 
+        !gitlabSigninEnabled &&
+        (
           <Notice>
-            Neither Slack or Google sign in is enabled. You must configure at
+            Neither Slack or Google sign in or any other are enabled. You must configure at
             least one authentication method to sign in to Outline.
           </Notice>
         )}
@@ -39,6 +44,17 @@ const SigninButtons = ({
           </Button>
           <LastLogin>
             {lastSignedIn === 'slack' && 'You signed in with Slack previously'}
+          </LastLogin>
+        </Column>
+      )}
+      {gitlabSigninEnabled && (
+        <Column column>
+          <Button href={signin('gitlab')}>
+            <GitlabLogo />
+            <Spacer>Sign In with GitLab</Spacer>
+          </Button>
+          <LastLogin>
+            {lastSignedIn === 'gitlab' && 'You signed in with GitLab previously'}
           </LastLogin>
         </Column>
       )}
