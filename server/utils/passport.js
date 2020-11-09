@@ -88,15 +88,15 @@ export function mountNativePassport<R>(
 
   return [
     /*
-     * passport.authenticate(service) is called to initiate 
+     * passport.authenticate(service) is called to initiate
      * the authentication process. In OAuth2-processes, this
      * includes generating a state parameter and redirecting
-     * to the authentication provider 
+     * to the authentication provider
      */
     passport.authenticate(service),
 
     /*
-     * These handlers are the callback handlers. 
+     * These handlers are the callback handlers.
      * auth({ required: false}) appends the ctx.signIn() method.
      * The custom handler uses a sophisticated routing structure
      * to execute all hooks and call a awaitable
@@ -339,7 +339,7 @@ export type OAuth2PassportOptions = NativePassportOptions<AuthorizationResult> &
   customHeaders?: { [x: string]: any },
   scopeSeparator?: string,
   state?: string,
-  column: 'slackId' | 'googleId',
+  column: 'slackId' | 'googleId' | 'gitlabId',
 };
 
 const Op = Sequelize.Op;
