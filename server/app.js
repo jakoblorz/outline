@@ -11,6 +11,7 @@ import mount from 'koa-mount';
 import enforceHttps from 'koa-sslify';
 import Koa from 'koa';
 import onerror from 'koa-onerror';
+import passport from 'koa-passport';
 import * as Sentry from '@sentry/node';
 import updates from './utils/updates';
 
@@ -114,6 +115,8 @@ app.on('error', (error, ctx) => {
     console.error(error);
   }
 });
+
+app.use(passport.initialize());
 
 app.use(mount('/auth', auth));
 app.use(mount('/api', api));
